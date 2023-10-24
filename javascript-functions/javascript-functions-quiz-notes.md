@@ -18,7 +18,7 @@ After completing this exercise, you should be able to discuss or answer the foll
 
 - Describe the parts of a function **call**.
 
--type function name and input parameters if applicable
+-type function name and input arguments if applicable
 
 - When comparing them side-by-side, what are the differences between a function **call** and a function **definition**?
 
