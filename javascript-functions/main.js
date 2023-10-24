@@ -5,29 +5,26 @@ function convertMinutesToSeconds(minutes) {
 console.log('5 minutes in seconds is:', convertMinutesToSeconds(5));
 
 function greet(name) {
-  return console.log('Should display greeting', 'Hey ' + name);
+  return 'Hey ' + name;
 }
-greet('Bobbers');
+console.log('This should be a greeting:', greet('Bobbers'));
 
 function getArea(width, height) {
-  return console.log('Area equals:', width * height);
+  return width * height;
 }
-getArea(17, 42);
+console.log('This is the area:', getArea(17, 42));
 
 function getFirstName(person) {
-  return console.log('First name is:', person.firstName);
+  return person.firstName;
 }
 const personUno = {
   firstName: 'Lelouche',
   lastName: 'Lamperouge',
 };
-getFirstName(personUno);
+console.log('This should be the first name:', getFirstName(personUno));
 
 function getLastElement(array) {
-  return console.log(
-    'The last element in the array is:',
-    array[array.length - 1]
-  );
+  return array[array.length - 1];
 }
 const exampleArray = [2, 4, 54, 82, 23];
-getLastElement(exampleArray);
+console.log('This is the last element:', getLastElement(exampleArray));
