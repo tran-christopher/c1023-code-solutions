@@ -6,11 +6,19 @@ After completing this exercise, you should be able to discuss or answer the foll
 
 - Where do you put non-visible content about the HTML document?
 
+-in the head
+
 - Where do you put visible content about the HTML document?
+
+-in the body
 
 - Where do the `<head>` and `<body>` tags go in a valid HTML document?
 
+-head goes at the top after doctype declaration and html element
+
 - What is the purpose of a `<!DOCTYPE>` declaration?
+
+-tells the browser what version of html page is in
 
 ## Notes
 
