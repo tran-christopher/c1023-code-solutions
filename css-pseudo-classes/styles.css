@@ -1,0 +1,24 @@
+.button {
+  font-size: large;
+  width: 145px;
+  height: 45px;
+  border: solid 1.5px;
+  border-color: darkgray;
+}
+
+.button:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  border: solid 2px;
+  border-color: darkgray;
+}
+
+.column {
+  background-color: black;
+  color: white;
+}
+
+.odd {
+  background-color: lightgray;
+}
