@@ -1,0 +1,74 @@
+.container {
+  height: 100vh;
+}
+
+.open-button {
+  width: 20%;
+  height: 6%;
+  font-size: large;
+  color: white;
+  background-color: rgb(77, 77, 230);
+  border-radius: 5%;
+  border-width: 0;
+  box-shadow: 0 0 7px -2px black;
+}
+
+.overlay-light {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 10%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.overlay-dark {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(29, 28, 28, 0.7);
+  z-index: 1;
+}
+
+.modal-container-light {
+  display: none;
+}
+
+.modal-container-dark {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 45%;
+  height: 30%;
+  position: fixed;
+  background-color: white;
+  z-index: 2;
+}
+
+.modal {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.close-button {
+  font-size: larger;
+  color: white;
+  background-color: rgb(248, 97, 97);
+  border-radius: 5%;
+  border-width: 0;
+  box-shadow: 0 0 7px -2px black;
+  width: 20%;
+  height: 20%;
+}
