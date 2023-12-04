@@ -23,9 +23,9 @@ actOnEntries(book, (entry) => {
 });
 
 console.log('\n\nExercise 3');
-function foo() {
+const foo = () => {
   console.log("Why doesn't this log???");
-}
+};
 console.log('foo type:', typeof foo);
 
 console.log('\n\nExercise 4');
