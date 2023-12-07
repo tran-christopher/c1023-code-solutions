@@ -43,7 +43,7 @@ console.log('vehicle:', vehicle);
 
 interface Pet {
   name?: string;
-  kind: string;
+  kind?: string;
 }
 
 const pet: Pet = {
@@ -52,5 +52,5 @@ const pet: Pet = {
 };
 
 delete pet.name;
-delete (pet as { kind?: string }).kind;
+delete pet.kind;
 console.log('pet:', pet);
