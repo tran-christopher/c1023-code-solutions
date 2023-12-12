@@ -1,26 +1,27 @@
-import { addTwoNumbers } from './add.js';
-import { subtractTwoNumbers } from './subtract.js';
-import { multiplyTwoNumbers } from './multiply.js';
-import { divideTwoNumbers } from './divide.js';
+import { add } from './add.js';
+import { subtract } from './subtract.js';
+import { multiply } from './multiply.js';
+import { divide } from './divide.js';
 
-if (process.argv[3] === 'plus') {
-  console.log(
-    'result:',
-    addTwoNumbers(Number(process.argv[2]), Number(process.argv[4]))
-  );
+const arg2: string = process.argv[2];
+const arg3: string = process.argv[3];
+const arg4: string = process.argv[4];
+
+if (arg3 === 'plus') {
+  console.log('result:', add(Number(arg2), Number(arg4)));
 } else if (process.argv[3] === 'minus') {
   console.log(
     'result:',
-    subtractTwoNumbers(Number(process.argv[2]), Number(process.argv[4]))
+    subtract(Number(process.argv[2]), Number(process.argv[4]))
   );
 } else if (process.argv[3] === 'times') {
   console.log(
     'result:',
-    multiplyTwoNumbers(Number(process.argv[2]), Number(process.argv[4]))
+    multiply(Number(process.argv[2]), Number(process.argv[4]))
   );
 } else if (process.argv[3] === 'over') {
   console.log(
     'result:',
-    divideTwoNumbers(Number(process.argv[2]), Number(process.argv[4]))
+    divide(Number(process.argv[2]), Number(process.argv[4]))
   );
 }
