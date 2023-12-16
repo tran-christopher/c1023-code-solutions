@@ -35,7 +35,7 @@ app.post('/api/grades/', (req, res) => {
     res.status(201);
     res.jsonp(newObj);
   } else {
-    res.sendStatus(404);
+    res.sendStatus(400);
   }
 });
 
