@@ -36,7 +36,7 @@ app.get('/api/grades', (req, res) => {
     const objToPush = grades[key];
     gradesArray.push(objToPush);
   }
-  res.jsonp(gradesArray);
+  res.json(gradesArray);
 });
 
 app.listen(8080, () => {
