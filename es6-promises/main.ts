@@ -3,10 +3,10 @@ import { takeAChance } from './take-a-chance.js';
 const promise = takeAChance('Chris');
 
 promise.then(
-  function (value) {
+  (value) => {
     console.log(`${value}`);
   },
-  function (reason) {
+  (reason) => {
     console.log(reason);
   }
 );
