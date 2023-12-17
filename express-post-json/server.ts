@@ -19,7 +19,7 @@ app.get('/api/grades', (req, res) => {
   for (const key in grades) {
     gradesArray.push(grades[key]);
   }
-  res.jsonp(gradesArray);
+  res.json(gradesArray);
 });
 
 const includesAll = (arr: string[], values: string[]): boolean => {
@@ -33,7 +33,7 @@ app.post('/api/grades/', (req, res) => {
     nextId++;
     gradesArray.push(newObj);
     res.status(201);
-    res.jsonp(newObj);
+    res.json(newObj);
   } else {
     res.sendStatus(400);
   }
