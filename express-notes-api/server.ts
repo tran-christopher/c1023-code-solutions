@@ -9,7 +9,6 @@ type Data = {
   notes: Record<string, string>;
 };
 
-const [, , note] = process.argv;
 let gradesArray: string[] = [];
 
 app.get('/api/notes', async (req, res) => {
@@ -20,7 +19,6 @@ app.get('/api/notes', async (req, res) => {
       break;
     } else {
       gradesArray.push(data.notes[key]);
-      console.log(note);
     }
   }
   res.json(gradesArray);
@@ -68,10 +66,12 @@ app.delete('/api/notes/:id', async (req, res) => {
     res.status(400).json({ error: 'Id must be a positive integer' });
   } else if (!requestedNote) {
     res.status(404).json({ error: `Id ${id} was not found` });
-  } else {
+  } else if (Number.isInteger(id) && requestedNote) {
     delete data.notes[id];
     await writeFile('data.json', JSON.stringify(data, null, 2));
     res.status(204).send();
+  } else {
+    res.status(500).json({ error: 'An unexpected error occurred' });
   }
 });
 
@@ -86,11 +86,18 @@ app.put('/api/notes/:id', async (req, res) => {
     res.status(400).json({ error: 'Content is the only supported input' });
   } else if (!requestedNote) {
     res.status(404).json({ error: `Id ${id} was not found` });
+  } else if (
+    Number.isInteger(id) &&
+    includesAll(Object.keys(newObj), ['content']) &&
+    requestedNote
+  ) {
+    newObj.id = id;
+    data.notes[id] = newObj;
+    await writeFile('data.json', JSON.stringify(data, null, 2));
+    res.status(200).send(newObj);
+  } else {
+    res.status(500).json({ error: 'An unexpected error occurred' });
   }
-  newObj.id = id;
-  data.notes[id] = newObj;
-  await writeFile('data.json', JSON.stringify(data, null, 2));
-  res.status(200).send(newObj);
 });
 
 async function read(): Promise<Data> {
