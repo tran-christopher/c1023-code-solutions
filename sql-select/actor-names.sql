@@ -1,4 +1,4 @@
 select "actorId",
        "firstName",
        "lastName"
-    from "pagila"
+    from "actors";
