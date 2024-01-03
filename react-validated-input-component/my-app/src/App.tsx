@@ -1,3 +1,8 @@
+import './App.css';
 import { ValidatedInput } from './ValidatedInput';
 
-<ValidatedInput />;
+function App() {
+  return <ValidatedInput />;
+}
+
+export default App;
