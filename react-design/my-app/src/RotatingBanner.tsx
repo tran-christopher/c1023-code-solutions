@@ -1,3 +1,4 @@
+// import { useState } from 'react';
 import { AccordionButtons } from './AccordionButtons';
 import { Banner } from './Banner';
 import { NextButton } from './NextButton';
@@ -8,6 +9,8 @@ type Props = {
 };
 
 export function RotatingBanner({ items }: Props) {
+  // const [index, setIndex] = useState(0);
+
   return (
     <div
       style={{
@@ -22,7 +25,7 @@ export function RotatingBanner({ items }: Props) {
         }}></h1>
       <Banner item={items[0]} />
       <PrevButton />
-      <AccordionButtons />
+      <AccordionButtons count={0} />
       <NextButton />
     </div>
   );
