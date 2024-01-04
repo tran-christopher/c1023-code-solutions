@@ -1,4 +1,4 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 import { AccordionButtons } from './AccordionButtons';
 import { Banner } from './Banner';
 import { NextButton } from './NextButton';
@@ -9,7 +9,27 @@ type Props = {
 };
 
 export function RotatingBanner({ items }: Props) {
-  // const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(0);
+
+  function handleNext() {
+    if (index === 5) {
+      setIndex(0);
+    } else {
+      setIndex(index + 1);
+    }
+  }
+
+  function handlePrev() {
+    if (index === 0) {
+      setIndex(5);
+    } else {
+      setIndex(index - 1);
+    }
+  }
+
+  function handleAccordion(clickedIndex: number) {
+    setIndex(clickedIndex);
+  }
 
   return (
     <div
@@ -23,10 +43,10 @@ export function RotatingBanner({ items }: Props) {
           backgroundColor: '#0125A7',
           marginBottom: '5px',
         }}></h1>
-      <Banner item={items[0]} />
-      <PrevButton />
-      <AccordionButtons count={0} />
-      <NextButton />
+      <Banner item={items[index]} />
+      <PrevButton onClick={handlePrev} />
+      <AccordionButtons onClick={handleAccordion} current={index} />
+      <NextButton onClick={handleNext} />
     </div>
   );
 }

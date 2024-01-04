@@ -1,50 +1,29 @@
-type Count = {
-  count: number;
+type AccordionButtonsProp = {
+  current: number;
+  onClick: (index: number) => void;
 };
 
-export function AccordionButtons({ count }: Count) {
+export function AccordionButtons({ current, onClick }: AccordionButtonsProp) {
+  function handleButtonClick(index: number) {
+    onClick(index);
+  }
+
   return (
     <div
       style={{
         marginRight: '35px',
         marginLeft: '35px',
       }}>
-      <button
-        style={{
-          backgroundColor: count === 0 ? 'red' : '',
-        }}>
-        0
-      </button>
-      <button
-        style={{
-          backgroundColor: count === 1 ? 'red' : '',
-        }}>
-        1
-      </button>
-      <button
-        style={{
-          backgroundColor: count === 2 ? 'red' : '',
-        }}>
-        2
-      </button>
-      <button
-        style={{
-          backgroundColor: count === 3 ? 'red' : '',
-        }}>
-        3
-      </button>
-      <button
-        style={{
-          backgroundColor: count === 4 ? 'red' : '',
-        }}>
-        4
-      </button>
-      <button
-        style={{
-          backgroundColor: count === 5 ? 'red' : '',
-        }}>
-        5
-      </button>
+      {[0, 1, 2, 3, 4, 5].map((index) => (
+        <button
+          key={index}
+          onClick={() => handleButtonClick(index)}
+          style={{
+            backgroundColor: current === index ? 'red' : '',
+          }}>
+          {index}
+        </button>
+      ))}
     </div>
   );
 }
