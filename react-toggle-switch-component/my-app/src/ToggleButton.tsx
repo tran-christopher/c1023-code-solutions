@@ -6,15 +6,11 @@ export function ToggleButton() {
 
   function handleToggle() {
     setToggle(!toggle);
-    const slider = document.querySelector('#slider');
-    slider?.className === 'slider-on'
-      ? (slider.className = 'slider-off')
-      : (slider.className = 'slider-on');
   }
 
   return (
     <>
-      <div id="slider" className="slider-on"></div>
+      <div id="slider" className={toggle ? 'slider-on' : 'slider-off'}></div>
       <button
         onClick={handleToggle}
         style={{
