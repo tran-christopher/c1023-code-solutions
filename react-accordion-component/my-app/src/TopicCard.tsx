@@ -4,15 +4,18 @@ type Topic = {
   content: string;
 };
 
-type TopicCardProps = {
+type CardProps = {
   topic: Topic;
+  isOpen: boolean;
+  onClick: () => void;
 };
-
-export function TopicCard({ topic }: TopicCardProps) {
+export function TopicCard({ topic, isOpen, onClick }: CardProps) {
   return (
-    <div>
-      <h1>{topic.title}</h1>
-      <p>{topic.content}</p>
+    <div className="topic">
+      <div onClick={onClick} className="topic-title">
+        <h3>{topic.title}</h3>
+      </div>
+      {isOpen && <div className="topic-content">{topic.content}</div>}
     </div>
   );
 }

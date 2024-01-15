@@ -1,4 +1,5 @@
 import { TopicCard } from './TopicCard';
+import { useState } from 'react';
 
 type Topic = {
   id: number;
@@ -11,9 +12,17 @@ type AccordionProps = {
 };
 
 export function Accordion({ topics }: AccordionProps) {
+  const [openedId, setOpenedId] = useState(0);
   return (
     <div>
-      <TopicCard topic={topics[0]} />
+      {topics.map((topic) => (
+        <TopicCard
+          key={topic.id}
+          topic={topic}
+          isOpen={openedId === topic.id}
+          onClick={() => setOpenedId(topic.id === openedId ? 0 : topic.id)}
+        />
+      ))}
     </div>
   );
 }
