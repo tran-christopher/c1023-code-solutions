@@ -8,21 +8,20 @@ type Image = {
 };
 
 export function UploadForm() {
-  const [imageFile, setImageFile] = useState('');
+  const [imageFile, setImageFile] = useState<Image>();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     try {
       event.preventDefault();
       const formData = new FormData(event.currentTarget);
-      const options = {
+      const response = await fetch('/api/uploads', {
         method: 'POST',
-        body: JSON.stringify(formData),
-      };
-      const response = await fetch('/api/uploads', options);
-      if (!response.ok) throw new Error(`Server error: ${response.status}`);
+        body: formData,
+      });
+      if (!response.ok) throw new Error(`fetch error: ${response.status}`);
       const newImage = await response.json();
-      console.log(newImage);
       setImageFile(newImage);
+      console.log(newImage);
     } catch (error) {
       console.error(error);
     }
@@ -76,6 +75,7 @@ export function UploadForm() {
               </button>
             </div>
           </form>
+          {imageFile && <img src={imageFile?.url} />}
         </div>
       </div>
     </div>
