@@ -6,11 +6,7 @@ import { Stopwatch } from './Stopwatch';
 import './Stopwatch.css';
 
 function App() {
-  return (
-    <>
-      <Stopwatch />
-    </>
-  );
+  return <Stopwatch />;
 }
 
 export default App;
