@@ -21,14 +21,15 @@ export function UserDetails({ userId, onCancel }: Props) {
           `https://jsonplaceholder.typicode.com/users/${userId}`
         );
         const data = await response.json();
-        if (response.ok) {
-          setUser(data);
+        setIsLoading(false);
+        if (!response.ok) {
+          throw new Error(`fetch error: ${response.status}`);
         }
+        setUser(data);
       } catch (error) {
         setError(error);
       }
     }
-    setIsLoading(false);
     getUserData();
   }, [userId]);
 

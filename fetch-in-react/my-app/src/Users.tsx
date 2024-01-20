@@ -27,14 +27,15 @@ export function Users() {
           'https://jsonplaceholder.typicode.com/users'
         );
         const data = await response.json();
-        if (response.ok) {
-          setUsers(data);
+        setIsLoading(false);
+        if (!response.ok) {
+          throw new Error(`fetch error ${response.status}`);
         }
+        setUsers(data);
       } catch (error) {
         setError(error);
       }
     }
-    setIsLoading(false);
     getData();
   }, []);
 
