@@ -31,14 +31,6 @@ export function CarouselWrapper({ images }: Props) {
     return () => clearInterval(interval);
   }, [handleCarousel]);
 
-  function handleNext() {
-    if (index === 5) {
-      setIndex(0);
-    } else {
-      setIndex(index + 1);
-    }
-  }
-
   function handlePrev() {
     if (index === 0) {
       setIndex(5);
@@ -67,7 +59,7 @@ export function CarouselWrapper({ images }: Props) {
         }}>
         <PrevButton onClick={handlePrev} />
         <Banner src={images[index].src} alt={images[index].alt} />
-        <NextButton onClick={handleNext} />
+        <NextButton onClick={handleCarousel} />
       </div>
       <div style={{}}>
         <Indicators onClick={handleAccordion} current={index} />
