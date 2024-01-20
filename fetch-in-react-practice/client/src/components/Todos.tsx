@@ -23,13 +23,14 @@ export function Todos() {
     async function getTodos() {
       try {
         const response = await fetch('/api/todos');
-        const data = await response.json();
         if (!response.ok) {
           throw new Error(`Error: ${response.status}`);
         }
+        const data = await response.json();
         setTodos(data);
         setIsLoading(false);
       } catch (error) {
+        setIsLoading(false);
         setError(error);
       }
     }
