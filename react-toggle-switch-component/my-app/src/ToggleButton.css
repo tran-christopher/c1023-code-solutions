@@ -1,0 +1,21 @@
+.slider-off {
+  border-radius: 50%;
+  width: 20.14px;
+  height: 21.19px;
+  background-color: white;
+  display: flex;
+  position: absolute;
+  left: 47%;
+  top: 76.1%;
+}
+
+.slider-on {
+  border-radius: 50%;
+  width: 20.14px;
+  height: 21.19px;
+  background-color: white;
+  display: flex;
+  position: absolute;
+  left: 50%;
+  top: 76.1%;
+}
