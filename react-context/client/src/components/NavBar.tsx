@@ -6,7 +6,7 @@ import { AppContext } from './AppContext';
 
 export function NavBar() {
   /* TODO: Grab `user` and `handleSignOut` from `AppContext` */
-  const context = useContext(AppContext);
+  const { user, handleSignOut } = useContext(AppContext);
 
   return (
     <div>
@@ -17,13 +17,13 @@ export function NavBar() {
             Awesome App
           </Link>
           <div>
-            {context.user && (
-              <button className="btn btn-dark" onClick={context.handleSignOut}>
+            {user && (
+              <button className="btn btn-dark" onClick={handleSignOut}>
                 Sign out
                 <FaSignOutAlt className="ml-2" />
               </button>
             )}
-            {!context.user && (
+            {!user && (
               <>
                 <Link to="/sign-in" className="btn btn-primary">
                   Sign In
