@@ -1,10 +1,10 @@
 import React from 'react';
 
-type SearchBarProps = {
+type searchBarProps = {
   OnType: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-export function SearchBar({ OnType }: SearchBarProps) {
+export function SearchBar({ OnType }: searchBarProps) {
   return (
     <div>
       <input

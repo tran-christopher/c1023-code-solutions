@@ -1,11 +1,11 @@
 import './List.css';
 
-type StringList = {
+type listProps = {
   list: string[];
   word: string;
 };
 
-export function List({ list, word }: StringList) {
+export function List({ list, word }: listProps) {
   const newList = [];
   let check;
   for (let i = 0; i < list.length; i++) {
