@@ -6,7 +6,7 @@ app.use(express.json());
 
 type Data = {
   nextId: number;
-  notes: Record<string, string>;
+  notes: Record<number, string>;
 };
 
 let gradesArray: string[] = [];
@@ -69,7 +69,7 @@ app.delete('/api/notes/:id', async (req, res) => {
   } else if (Number.isInteger(id) && requestedNote) {
     delete data.notes[id];
     await writeFile('data.json', JSON.stringify(data, null, 2));
-    res.status(204).send();
+    res.sendStatus(204);
   } else {
     res.status(500).json({ error: 'An unexpected error occurred' });
   }
@@ -94,7 +94,7 @@ app.put('/api/notes/:id', async (req, res) => {
     newObj.id = id;
     data.notes[id] = newObj;
     await writeFile('data.json', JSON.stringify(data, null, 2));
-    res.status(200).send(newObj);
+    res.status(200).send(JSON.stringify(newObj));
   } else {
     res.status(500).json({ error: 'An unexpected error occurred' });
   }
