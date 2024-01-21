@@ -5,7 +5,6 @@ import argon2 from 'argon2';
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import { ClientError, errorMiddleware, authMiddleware } from './lib/index.js';
-
 type User = {
   userId: number;
   username: string;
@@ -21,23 +20,19 @@ type Entry = {
   notes: string;
   photoUrl: string;
 };
-
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false,
   },
 });
-
 const hashKey = process.env.TOKEN_SECRET;
 if (!hashKey) throw new Error('TOKEN_SECRET not found in .env');
-
 const app = express();
 app.use(express.json());
-
-app.post('/api/auth/sign-up', authMiddleware, async (req, res, next) => {
+app.post('/api/auth/sign-up', async (req, res, next) => {
   try {
-    const { username, password } = req.body as Partial<Auth>;
+    const { username, password } = req.body;
     if (!username || !password) {
       throw new ClientError(400, 'username and password are required fields');
     }
@@ -55,8 +50,7 @@ app.post('/api/auth/sign-up', authMiddleware, async (req, res, next) => {
     next(err);
   }
 });
-
-app.post('/api/auth/sign-in', authMiddleware, async (req, res, next) => {
+app.post('/api/auth/sign-in', async (req, res, next) => {
   try {
     const { username, password } = req.body as Partial<Auth>;
     if (!username || !password) {
@@ -85,12 +79,8 @@ app.post('/api/auth/sign-in', authMiddleware, async (req, res, next) => {
     next(err);
   }
 });
-
 app.get('/api/entries', authMiddleware, async (req, res, next) => {
   try {
-    if (!req.user) {
-      throw new ClientError(401, 'not logged in');
-    }
     const sql = `
       select * from "entries"
         where "userId" = $1
@@ -102,12 +92,8 @@ app.get('/api/entries', authMiddleware, async (req, res, next) => {
     next(err);
   }
 });
-
 app.post('/api/entries', authMiddleware, async (req, res, next) => {
   try {
-    if (!req.user) {
-      throw new ClientError(401, 'not logged in');
-    }
     const { title, notes, photoUrl } = req.body as Partial<Entry>;
     if (!title || !notes || !photoUrl) {
       throw new ClientError(
@@ -128,12 +114,8 @@ app.post('/api/entries', authMiddleware, async (req, res, next) => {
     next(err);
   }
 });
-
 app.put('/api/entries/:entryId', authMiddleware, async (req, res, next) => {
   try {
-    if (!req.user) {
-      throw new ClientError(401, 'not logged in');
-    }
     const entryId = Number(req.params.entryId);
     const { title, notes, photoUrl } = req.body as Partial<Entry>;
     if (!Number.isInteger(entryId) || !title || !notes || !photoUrl) {
@@ -161,12 +143,8 @@ app.put('/api/entries/:entryId', authMiddleware, async (req, res, next) => {
     next(err);
   }
 });
-
 app.delete('/api/entries/:entryId', authMiddleware, async (req, res, next) => {
   try {
-    if (!req.user) {
-      throw new ClientError(401, 'not logged in');
-    }
     const entryId = Number(req.params.entryId);
     if (!Number.isInteger(entryId)) {
       throw new ClientError(400, 'entryId must be an integer');
@@ -187,9 +165,7 @@ app.delete('/api/entries/:entryId', authMiddleware, async (req, res, next) => {
     next(err);
   }
 });
-
 app.use(errorMiddleware);
-
 app.listen(process.env.PORT, () => {
   console.log(`express server listening on port ${process.env.PORT}`);
 });
