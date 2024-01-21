@@ -12,7 +12,7 @@ export function RotatingBanner({ items }: Props) {
   const [index, setIndex] = useState(0);
 
   function handleNext() {
-    if (index === 5) {
+    if (index === items.length - 1) {
       setIndex(0);
     } else {
       setIndex(index + 1);
@@ -20,7 +20,7 @@ export function RotatingBanner({ items }: Props) {
   }
 
   function handlePrev() {
-    if (index === 0) {
+    if (index === items.length - 1) {
       setIndex(5);
     } else {
       setIndex(index - 1);
